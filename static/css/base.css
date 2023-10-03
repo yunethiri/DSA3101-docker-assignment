@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-base: "Inter", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
+
+  --base-color: #f6f5f8;
+  --primary-color: #fffefe;
+  --secondary-color: #97abe5;
+  --black-color: #030303;
+  --lightGray-color: #e4edef;
+  --gray-color: #6b7688;
+  --brown-color: #46364a;
+  --white-color: #ffffff;
+  --blue-color: rgb(49, 65, 252);
+}
+
+* {
+  font-family: var(--font-base);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  background-color: var(--base-color);
+}
+
+nav {
+  background-color: var(--primary-color);
+  
+  height: 100vh;
+  width: 12rem;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+nav > ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;  
+}
+
+.logo {
+  font-size: 1.75rem;
+  text-align: center;
+  font-family: var(--secondary-font);
+  letter-spacing: 0.5rem;
+  margin-top: 0;
+}
+
+.logo > a, .logo > a:hover {
+  transition: 0.1s font-weight ease-in;
+}
+
+.logo > a:hover {
+  font-weight: 700;
+}
+
+
+nav > ul > li {
+  text-align: center;
+  
+  list-style: none;
+  
+  padding: 1rem 0.5rem;
+  
+  width: 100%;
+  transition: 0.3s background-color ease-in;
+  border: 0.5rem;
+}
+
+nav > ul > li:hover {
+  background-color: var(--secondary-color);
+  
+  transition: 0.3s background-color ease-in;
+}
+
+nav > ul > li > a {
+  font-weight: 700;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.customer-table {
+  height: 50rem;
+  overflow-y: scroll;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+}
+
+thead tr {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+th {
+  text-align: center;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+tbody tr, tbody tr:hover
+tbody tr:nth-of-type(even), tbody tr:nth-of-type(even):hover {
+  transition: 0.25s background-color ease-in;
+}
+
+tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #e3e4e8;
+}
+
+tbody tr:nth-of-type(even):hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+tbody tr:last-of-type {
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+button, input[type="Submit"] {
+  padding: 1rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  
+  background-color: var(--secondary-color);
+  border: 2px solid gray;
+  border-radius: 0.65rem;
+
+  cursor: pointer;
+  
+  transition: 0.25s background-color ease-in;
+}
+
+button:hover, input[type="Submit"]:hover {
+  background-color: #7489c9;
+  color: black;
+
+  transition: 0.25s background-color ease-in;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  font-size: 1rem;
+}
+
+input, select {
+  width: 20rem;
+  height: 2.5rem;
+
+  font-size: 1rem;
+
+  padding-inline: 1rem;
+  border-radius: 0.35rem;
+
+  border: 2px solid var(--secondary-color);
+}
+
+
+.deleteButton {
+  height: 0.25rem;
+  width: 0.25rem;
+  background-color: lightcoral;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton:hover {
+  background-color: rgb(197, 71, 71);
+}

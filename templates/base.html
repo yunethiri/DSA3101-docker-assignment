@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Solace Trust</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="/">SOLACE TRUST</a>
+      </div>
+      <ul>
+        <li>
+          <i class="fa fa-user"></i>
+          <a href="/customers">Customers</a>
+        </li>
+      </ul>
+      
+    </nav>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    {% block javascript%}{% endblock %}
+    
+  </body>
+</html>

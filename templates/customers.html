@@ -1,0 +1,63 @@
+{% extends "./base.html" %}
+
+{% block content%}
+
+<h1>Customers</h1>
+<div class="customer-table">
+  {{users | safe}}
+</div>
+
+{% endblock %}
+
+{% block javascript%}
+  <script>
+    
+    function addColumn(){  
+      const table = document.querySelector('table');
+      
+      const newHeaderCol = document.createElement('th');
+      newHeaderCol.innerText = "Delete User?";
+      table.querySelector('thead > tr:first-child').append(newHeaderCol);
+      
+      const tableRows = table.querySelectorAll('tbody > tr');
+      let iRow = 0;
+      // looping through each row of the tables
+      for(const tableRow of tableRows){
+        const newBodyCol = document.createElement('td');
+        const customerID = tableRow.querySelector('td').innerHTML;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.setAttribute("customer-id", customerID);
+        deleteButton.setAttribute("class", "deleteButton");
+        var deleteIcon = document.createElement("i");
+        deleteIcon.setAttribute("class", "fa-solid fa-user-xmark")
+        deleteButton.appendChild(deleteIcon);
+
+        deleteButton.addEventListener("click", function(e){
+          const customerID = e.currentTarget.getAttribute('customer-id');
+          try {     
+            fetch('/delete_customer', {
+              method: 'delete',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                "customer_id" : customerID
+              })
+            }).then((response) => {
+              console.log('Completed!', response);
+              location.reload();
+            });
+          } catch(err) {
+            console.error(`Error: ${err}`);
+          }
+        })
+        
+        newBodyCol.appendChild(deleteButton);
+        tableRow.append(newBodyCol);
+      }
+    }
+
+    addColumn();
+  </script>
+{% endblock%}
