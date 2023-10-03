@@ -21,11 +21,13 @@ def establish_sql_connection():
     )
     return db
 
+@app.route('/')
 def home():
     return render_template(
         'home.html'
     )
 
+@app.route('/customers', methods = ['GET'])
 def customers():
     db = establish_sql_connection()
     cursor = db.cursor()
@@ -45,16 +47,21 @@ def customers():
         'customers.html', users = df.to_html(index=False)
     )
 
+@app.route('/get_customers_gender_segment', methods=['GET'], defaults=get_defaults)
 def customers_gender_segment(gender, segment, limit):
-    gender = request.args.get('gender')
-    segment = request.args.get('segment')
-    limit = request.args.get('limit')
+    gender = request.args.get('gender', default = gender)
+    segment = request.args.get('segment', default = segment)
+    limit = request.args.get('limit', default = limit)
 
     db = establish_sql_connection()
     cursor = db.cursor()
     #### ADD YOUR SQL QUERY BELOW ####
-    #query = 
-
+    query = f"SELECT *\
+        FROM customers\
+            WHERE customer_gender = '{gender}'\
+            AND customer_segment = '{segment}'\
+                LIMIT {limit}\
+                    "
     cursor.execute(query)
     result = cursor.fetchall()
     df = pd.DataFrame(result, columns=['ID','Name','Age','Gender', 'Income',
@@ -66,7 +73,7 @@ def customers_gender_segment(gender, segment, limit):
 
     return jsonify(df.to_json(orient="records", index=False))
 
-
+@app.route('/add_customer', methods=['POST'])
 def add_customer():
     customer_id = request.form['customer_id']
     customer_name = request.form['customer_name']
@@ -99,7 +106,7 @@ def add_customer():
 
     return f"Record {customer_id} has been added."
 
-
+@app.route('/delete_customer', methods = ['DELETE'])
 def delete_customer():
     customer_id = int(request.get_json()['customer_id'])
 
@@ -107,7 +114,10 @@ def delete_customer():
     cursor = db.cursor()
 
     #### ADD YOUR SQL QUERY BELOW ####
-    #query = 
+    query = f"\
+        DELETE FROM customers\
+        WHERE customer_id = {customer_id}\
+    "
 
     cursor.execute(query)
     db.commit()
