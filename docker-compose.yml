@@ -5,12 +5,16 @@ services:
     build: 
       context: .
       dockerfile: flask_dockerfile
+    ports:
+      - "9001:5000"
   db:
     image: "imxuanjun/solace_trust"
   user:
     build:
       context: .
       dockerfile: user_dockerfile
+    volumes:
+      - ./data:/data
     stdin_open: true
     tty: true
     

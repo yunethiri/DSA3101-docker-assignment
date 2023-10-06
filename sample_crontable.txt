@@ -1,1 +1,1 @@
-* * * * * # Your command here
+59 23 * * * /usr/bin/python3 /app/upload.py

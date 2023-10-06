@@ -5,6 +5,11 @@ FROM python:3.10.6-slim-buster
 # ADD 1. Python script, 2. requirements file, 3. templates and 4. static folder to /app 
 # directory on the image:
 ## ADD YOUR INSTRUCTIONS BELOW ##
+WORKDIR /app
+COPY customers.py customers.py
+COPY requirements.txt requirements.txt
+COPY templates/ templates/
+COPY static/ static/
 
 # things to make customers.py work
 RUN pip3 install --upgrade pip
